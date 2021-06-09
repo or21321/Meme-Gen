@@ -2,6 +2,13 @@
     box-sizing: border-box;
 }
 
+/* FONT */
+
+@font-face {
+    font-family: IMPACT;
+    src: url(/fonts/impact.ttf);
+}
+
 /* BASE */
 
 /* html { */
@@ -10,13 +17,57 @@
 
 body {
     margin: 0;
+    height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-img {
+/* img {
     width: 100%;
+} */
+
+.meme-edit {    
+    display: none;
+    /* display: flex; */
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.canvas-container { 
+    margin: 0 auto;
+    background-color: bisque;
+    /* width: 100%; */
+    /* height: 60vh;  */
+    position: relative;
+
+    
+}
+
+.meme-canvas {  
+    border: 2px solid black;
+    /* margin: 0 auto; */
+}
+
+.canvas-edit-tools {    
+    border: 2px solid black;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+}
+
+.text-add { 
+    margin: 5px auto;
+}
+
+input[name="textLine"] {
+    text-align: center;
+}
+
+.image-gallery img {    
+    /* height: 150px; */
+    width: 150px;
 }
 
