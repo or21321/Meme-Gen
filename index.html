@@ -7,48 +7,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <title>Meme-Gen</title>
+    <script src="https://kit.fontawesome.com/4508909954.js" crossorigin="anonymous"></script>
 </head>
 
 <body onload="init()">
-    <div class="meme-edit">
+    <header class="header-container">
+        <div class="main-header flex space-between main-layout">
+            <div class="logo flex">
+                <img src="./img/logo/LogoMakr-926aGf.png">
+            </div>
+            <ul class="main-nav flex clean-list">
+                <li onclick="onClickMenuItem(this)"><a class="flex" href="#">Gallery</a></li>
+                <li onclick="onClickMenuItem(this)"><a class="flex" href="#">Memes</a></li>
+                <li onclick="onClickMenuItem(this)"><a class="flex" href="#">About</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="meme-edit main-layout">
         <div class="canvas-container">
             <canvas class="meme-canvas">
             </canvas>
         </div>
         <div class="canvas-edit-tools">
             <div class="text-add">
-                <input name="textLine" type="text" placeholder="text to add" autocomplete="off">
-                <button onclick="onAddText()">Add</button>
                 <button onclick="onChangeFontSize(1)" class="font-increase">+</button>
                 <span class="font-size"></span>
                 <button onclick="onChangeFontSize(-1)" class="font-decrease">-</button>
+                <input name="textLine" type="text" placeholder="text to add" autocomplete="off">
+                <button onclick="onAddText()">Add</button>
             </div>
             <div class="line-height">
-                <button onclick="onChangeFontSize(1)" class="font-increase">UP</button>
-                <span>move line</span>
-                <button onclick="onChangeFontSize(-1)" class="font-decrease">DOWN</button>
+                <button onclick="onLineMovePos(-5)" class="line-up">UP</button>
+                <span>
+                    move line
+                </span>
+                <select class="focus-lines" onchange="onFocusLine(this.value)">
+                </select>
+                <button onclick="onLineMovePos(5)" class="line-down">DOWN</button>
             </div>
+            <a href="#" onclick="downloadMeme(this)" download="file-name">Download</a>
         </div>
     </div>
-    <div class="image-gallery">
-        <img onclick="onImgClicked(1)" src="./img/meme-imgs(square)/1.jpg">
-        <img onclick="onImgClicked(2)" src="./img/meme-imgs(square)/2.jpg">
-        <img onclick="onImgClicked(3)" src="./img/meme-imgs(square)/3.jpg">
-        <img onclick="onImgClicked(4)" src="./img/meme-imgs(square)/4.jpg">
-        <img onclick="onImgClicked(5)" src="./img/meme-imgs(square)/5.jpg">
-        <img onclick="onImgClicked(6)" src="./img/meme-imgs(square)/6.jpg">
-        <img onclick="onImgClicked(7)" src="./img/meme-imgs(square)/7.jpg">
-        <img onclick="onImgClicked(8)" src="./img/meme-imgs(square)/8.jpg">
-        <img onclick="onImgClicked(9)" src="./img/meme-imgs(square)/9.jpg">
-        <img onclick="onImgClicked(10)" src="./img/meme-imgs(square)/10.jpg">
-        <img onclick="onImgClicked(11)" src="./img/meme-imgs(square)/11.jpg">
-        <img onclick="onImgClicked(12)" src="./img/meme-imgs(square)/12.jpg">
-        <img onclick="onImgClicked(13)" src="./img/meme-imgs(square)/13.jpg">
-        <img onclick="onImgClicked(14)" src="./img/meme-imgs(square)/14.jpg">
-        <img onclick="onImgClicked(15)" src="./img/meme-imgs(square)/15.jpg">
-        <img onclick="onImgClicked(16)" src="./img/meme-imgs(square)/16.jpg">
-    </div>
-    <script src="/js/local-service.js"></script>
+    <aside>
+        <!-- will be for search -->
+    </aside>
+    <main>
+        <div class="image-gallery grid main-layout">
+            <img onclick="onImgClicked(1)" src="./img/meme-imgs(square)/1.jpg">
+            <img onclick="onImgClicked(2)" src="./img/meme-imgs(square)/2.jpg">
+            <img onclick="onImgClicked(3)" src="./img/meme-imgs(square)/3.jpg">
+            <img onclick="onImgClicked(4)" src="./img/meme-imgs(square)/4.jpg">
+            <img onclick="onImgClicked(5)" src="./img/meme-imgs(square)/5.jpg">
+            <img onclick="onImgClicked(6)" src="./img/meme-imgs(square)/6.jpg">
+            <img onclick="onImgClicked(7)" src="./img/meme-imgs(square)/7.jpg">
+            <img onclick="onImgClicked(8)" src="./img/meme-imgs(square)/8.jpg">
+            <img onclick="onImgClicked(9)" src="./img/meme-imgs(square)/9.jpg">
+            <img onclick="onImgClicked(10)" src="./img/meme-imgs(square)/10.jpg">
+            <img onclick="onImgClicked(11)" src="./img/meme-imgs(square)/11.jpg">
+            <img onclick="onImgClicked(12)" src="./img/meme-imgs(square)/12.jpg">
+            <img onclick="onImgClicked(13)" src="./img/meme-imgs(square)/13.jpg">
+            <img onclick="onImgClicked(14)" src="./img/meme-imgs(square)/14.jpg">
+            <img onclick="onImgClicked(15)" src="./img/meme-imgs(square)/15.jpg">
+            <img onclick="onImgClicked(16)" src="./img/meme-imgs(square)/16.jpg">
+        </div>
+        <img src="\data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfM…8sqyd8vcFSvPxdLr/wtftMRJwbjxMAAAAABJRU5ErkJggg==\">
+    </main>
+    <footer class="main-footer flex column">
+        <!-- <div class="logo">
+            <img src="./img/logo/LogoMakr-926aGf.png">
+        </div> -->
+        <small>
+            © 2021 MeMedia.com - All Rights Reserved - Find more free meme images at Yolobanned.com
+        </small>
+        <ul class="social-nav flex clean-list">
+            <li><a href="#" class="facebook"> <i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#" class="instagram"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#" class="instagram"><i class="far fa-hand-peace"></i></a></li>
+        </ul>
+    </footer>
+    <script src="/js/local.js"></script>
     <script src="/js/memeService.js"></script>
     <script src="/js/mainController.js"></script>
 </body>
