@@ -3,26 +3,58 @@
 var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'I never eat Falafel',
-            size: 20,
-            align: 'left',
-            color: 'red'
-        }
-    ]
+    lines: []
 }
+// {
+//     txt: '',
+//     size: 20,
+//     align: 'left',
+//     color: 'red',
+//     x: 250,
+//     y: 50
+// }
 
-function getMeme() {    
+var gLinesPos = [
+    {
+        x: 250,
+        y: 50
+    },
+    {
+        x: 250,
+        y: 450
+    }
+]
+
+var gFontSize;
+
+
+function getMeme() {
     console.log('getMeme() return gMeme', gMeme);
     return gMeme;
 }
 
-function setMemeImgId(imgId) {   
+function setMemeImgId(imgId) {
     gMeme.selectedImgId = imgId;
 }
 
-function setMemeText(text) {
-    gMeme.lines[0].txt = text;
-    console.log('gMeme.lines.txt', gMeme.lines.txt)
+
+function setMemeFontSize(changeVal) {
+    gFontSize += changeVal;
+}
+
+function getMemeFontSize() {
+    return gFontSize;
+}
+
+function createLine(text, size, align = "left", fillColor = "white", strokeColor = "black") {
+    var newLine = {
+        txt: text,
+        size,
+        align,
+        fillColor,
+        strokeColor
+
+    }
+    gMeme.lines.push(newLine);
+    console.log(gMeme);
 }
