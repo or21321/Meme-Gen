@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Meme-Gen</title>
     <script src="https://kit.fontawesome.com/4508909954.js" crossorigin="anonymous"></script>
 </head>
 
 <body onload="init()">
+    <div class="main-screen" onclick="toggleMenu()">Hey</div>
     <header class="header-container">
         <div class="main-header flex space-between main-layout">
             <div class="logo">
@@ -23,43 +24,112 @@
                 <li onclick="onClickMenuItem(this)"><a class="flex" href="#">About</a></li>
             </ul>
         </div>
+        <button class="btn-menu" onclick="toggleMenu()">☰</button>
     </header>
-    <aside class="search flex main-layout">
-        <div class="search-input flex">
-            <input type="text" name="search" autocomplete="off" placeholder="Enter search keyword">
-            <button class="search-icon">
-                <img src="img/search-icon.png">
-            </button>
-        </div>
+    <aside class="flex main-layout">
+            <form class="search-input flex" onsubmit="searchByKeywords(this, event)">
+                <input type="text" name="search" autocomplete="off"
+                    placeholder="Enter search keyword">
+                <button type="submit" class="search-icon">
+                    <img src="img/search-icon.png">
+                </button>
+            </form>
     </aside>
     <div class="meme-edit main-layout">
         <div class="canvas-container">
-            <canvas class="meme-canvas" height="500px">
+            <canvas class="meme-canvas">
             </canvas>
         </div>
-        <div class="control-box">
-            <div class="text-add">
-                <button onclick="onChangeFontSize(1)" class="font-increase">+</button>
-                <span class="font-size"></span>
-                <button onclick="onChangeFontSize(-1)" class="font-decrease">-</button>
+        <div class="control-box flex column">
+            <!-- <div class="text-input"> -->
+            <div class="lines-edit flex column">
                 <input name="textLine" type="text" placeholder="text to add" autocomplete="off"
                     oninput="renderLineLive(this)">
-                <button onclick="onAddText()">Add</button>
+                <div class="lines-btns flex">
+                    <button onclick="onFocusLine()">
+                        <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png">
+                    </button>
+                    <button class="pos-btn" onclick="onLineMoveHorizontal(5)" class="line-up">👉</button>
+                    <button class="pos-btn" onclick="onLineMoveHorizontal(-5)" class="line-up">👈</button>
+                    <button class="pos-btn" onclick="onLineMoveVertical(-5)" class="line-up">👆</button>
+                    <!-- <span>
+                        move line
+                    </span>
+                    <select class="focus-lines" onchange="onFocusLine(this.value)">
+                    </select> -->
+                    <button class="pos-btn" onclick="onLineMoveVertical(5)" class="line-down">👇</button>
+                    <button onclick="onAddText()">
+                        <img src="ICONS/add.png">
+                    </button>
+                    <button onclick="onDeleteLine()">
+                        <img src="ICONS/trash.png">
+                    </button>
+                </div>
+                <div class="line-height">
+                    <!-- <button onclick="onLineMovePos(-5)" class="line-up">👆</button>
+                    <span>
+                        move line
+                    </span>
+                    <select class="focus-lines" onchange="onFocusLine(this.value)">
+                    </select>
+                    <button onclick="onLineMovePos(5)" class="line-down">👇</button> -->
+                </div>
+
             </div>
-            <div class="line-height">
-                <button onclick="onLineMovePos(-5)" class="line-up">UP</button>
-                <span>
-                    move line
-                </span>
-                <select class="focus-lines" onchange="onFocusLine(this.value)">
-                </select>
-                <button onclick="onLineMovePos(5)" class="line-down">DOWN</button>
+            <div class="text-edit-btns flex column">
+                <div class="upper-btns flex">
+                    <button onclick="onChangeFontSize(1)" class="font-increase">
+                        <img src="ICONS/increase font - icon.png"></button>
+                    <span class="font-size flex"></span>
+                    <button onclick="onChangeFontSize(-1)" class="font-decrease">
+                        <img src="ICONS/decrease font - icon.png">
+                    </button>
+                    <button onclick="onAlignLeft()">
+                        <img src="ICONS/align-to-left.png">
+                    </button>
+                    <button onclick="onAlignCenter()">
+                        <img src="ICONS/center-text-alignment.png">
+                    </button>
+                    <button onclick="onAlignRight()">
+                        <img src="ICONS/align-to-right.png">
+                    </button>
+                </div>
+                <div class="lower-btns flex">
+                    <select class="fonts">
+                        <option>IMPACT</option>
+                    </select>
+                    <button onclick="onSetStrokeColor()">
+                        <img src="ICONS/text stroke.png">
+                    </button>
+                    <button onclick="onSetFillColor()">
+                        <img src="ICONS/paint-board-and-brush.png">
+                    </button>
+                </div>
+
             </div>
-            <a href="#" onclick="downloadMeme(this)" download="file-name">Download</a>
-            <button class="saveMeme" onclick="saveMeme()">Save</button>
-            <div>
+            <div class="emojis"></div>
+            <div class="share-download-save flex">
+                <a href="#" onclick="downloadMeme(this)" download="file-name">
+                    Download
+                </a>
+                <a href="#" onclick="saveMeme(this)">
+                    Save
+                </a>
+                <!-- <a onclick="shareImg(event)" href="#" download="file-name">
+                    Share
+                </a> -->
+                <form name="share" action="" method="POST" enctype="multipart/form-data"
+                    onsubmit="shareImg(this, event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <a class="share-btn"><button type="submit">Share</button></a>
+                    <div class="share-container"></div>
+                </form>
+            </div>
+            <!-- <img src="ICONS/" -->
+            <!-- <button class="saveMeme" onclick="saveMeme()">Save</button> -->
+            <!-- <div>
                 <div class="render-saved"></div>
-            </div>
+            </div> -->
         </div>
     </div>
     <aside>
@@ -83,10 +153,19 @@
             <img onclick="onImgClicked(14)" src="./img/meme-imgs(square)/14.jpg">
             <img onclick="onImgClicked(15)" src="./img/meme-imgs(square)/15.jpg">
             <img onclick="onImgClicked(16)" src="./img/meme-imgs(square)/16.jpg">
-            <img onclick="onImgClicked(18)" src="./img/meme-imgs(aspect-ratio)/X-Everywhere.jpg">
+            <!-- <img onclick="onImgClicked(17)" src="./img/meme-imgs/X-Everywhere.jpg">
+            <img onclick="onImgClicked(18)" src="./img/meme-imgs/9.jpg"> -->
         </div>
         <img src="\data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfM…8sqyd8vcFSvPxdLr/wtftMRJwbjxMAAAAABJRU5ErkJggg==\">
     </main>
+    <aside class="about flex main-layout">
+        <img src="img/logo/LogoMakr-926aGf.png">
+        <div class="about-details">
+            <h2>Memedia</h2>
+            <p>is a new puki company, based in Israel, with a big dream to make funny memes, hoping to make as many
+                people as we can, laugh!</p>
+        </div>
+    </aside>
     <footer class="main-footer flex column">
         <!-- <div class="logo">
             <img src="./img/logo/LogoMakr-926aGf.png">
@@ -105,9 +184,9 @@
             <li><a href="#" class="instagram"><i class="far fa-hand-peace"></i></a></li>
         </ul> -->
     </footer>
-    <script src="/js/local.js"></script>
-    <script src="/js/meme-service.js"></script>
-    <script src="/js/main-controller.js"></script>
+    <script src="./js/local.js"></script>
+    <script src="./js/meme-service.js"></script>
+    <script src="./js/main-controller.js"></script>
 </body>
 
 </html>

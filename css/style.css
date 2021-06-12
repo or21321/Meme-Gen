@@ -31,7 +31,9 @@
 
 /* BASE */
 
-/* html { */
+html {
+    font-family: Montserrat-Regular;
+}
 
 /* font-family: Lato-Regular, sans-serif; */
 
@@ -40,7 +42,7 @@
 body {
     margin: 0;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: #e3e3e3;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -85,50 +87,82 @@ img {
     padding-inline-end: 5px;
 } */
 
-.main-nav li:first-child a {
-    margin-inline-end: 20px;
-}
-
-.main-nav li:last-child a {
-    margin-inline-start: 20px;
-}
-
-.main-nav li:last-child {
-    border-left: 1px solid #8a8a8a;
-}
-
 .meme-edit {
     display: none;
-    background-color: cornsilk;
+    /* background-color: cornsilk; */
     justify-content: space-between;
     gap: 15px;
-    border: 5px dotted brown;
+    /* border: 5px dotted brown; */
     padding-bottom: 20px;
     padding-top: 20px;
     /* margin-top: 40px; */
 }
 
 .canvas-container {
+    /* flex-basis: 1; */
+    /* width: 50%; */
     margin: 0 auto;
     position: relative;
 }
 
 .meme-canvas {
     border: 2px solid black;
-    /* margin: 0 auto; */
+    margin: 0 auto;
+    /* width: 100%; */
 }
 
 .control-box {
     border: 2px solid black;
-    width: 50%;
+    /* flex-basis: 1; */
+    /* width: 50%; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 35px;
 }
 
-.text-add {
-    margin: 5px auto;
+.control-box button {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0px solid grey;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+input[name="textLine"] {
+    margin-top: 0.625rem;
+    /* margin-top: 10px; */
+    /* padding: 0.625rem; */
+    height: 2.5em;
+    width: 100%;
+    /* padding: 10px; */
+    border: none;
+    border-radius: 5px;
+}
+
+.lines-edit {
+    gap: 10px;
+    width: 80%;
+}
+
+.lines-btns {
+    gap: 15px;
+    justify-content: center;
+}
+
+.upper-btns {
+    gap: 15px;
+    justify-content: center;
+}
+
+.text-edit-btns {
+    gap: 15px;
+    width: 80%;
+    justify-content: center;
+}
+
+.text-input input {
+    border-radius: 5px;
 }
 
 input[name="textLine"] {
@@ -136,9 +170,54 @@ input[name="textLine"] {
 }
 
 .font-size {
-    background-color: brown;
+    background-color: #ffffff;
     padding: 3px;
     border-radius: 3px;
+    align-items: center;
+}
+
+.fonts {
+    height: 2.5rem;
+    width: 7rem;
+    border: 0px solid grey;
+    background-color: #ffffff;
+    border-radius: 5px;
+    font-family: Montserrat-Bold;
+}
+
+.lower-btns {
+    /* align-items: center; */
+    gap: 15px;
+    justify-content: center;
+}
+
+.share-download-save {
+    gap: 15px;
+    align-items: center;
+}
+
+.share-download-save>* :hover {
+    cursor: pointer;
+}
+
+.share-download-save a {
+    background-color: #ff7f00;
+    padding: 15px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.share-download-save form button {
+    background-color: #ff7f00;
+    color: #ffffff;
+    height: 10px;
+    /* padding: 15px; */
+    /* border-radius: 5px; */
+}
+
+.pos-btn {
+    font-size: 1.5rem;
 }
 
 input[name="search"] {
@@ -198,12 +277,10 @@ input[name="search"] {
 .image-gallery {
     /* margin: 0 50px 0 50px; */
     margin: 0 auto;
-    /* grid-template-columns: 1fr 1fr 1fr; */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     /* grid-auto-rows: 380px; */
     gap: 40px;
-    justify-items: stretch;
-    padding-top: 20px;
+    padding: 20px 0 10px 0;
     border-bottom: 2px solid grey;
     justify-content: stretch;
 }
@@ -220,12 +297,33 @@ input[name="search"] {
     border-radius: 5px;
 }
 
+.about {
+    padding: 5px 0 5px 0;
+    justify-content: space-evenly;
+}
+
+.about h2 {
+    font-family: Montserrat-Bold;
+}
+
+.about img {
+    width: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #ff7f00;
+}
+
+.about-details {
+    width: 50%;
+}
+
 .main-footer {
     align-items: center;
-    gap: 25px;
-    margin-top: 105px;
+    /* gap: 25px; */
+    /* margin-top: 105px; */
     background-color: #ff7f00;
     height: 103.5px;
+    padding-top: 35px;
 }
 
 .social-nav>* a {
@@ -257,7 +355,7 @@ input[name="search"] {
 
 .main-layout {
     margin: 0 auto;
-    width: 981px;
+    width: 90%;
     /* border-right: 2px solid grey; */
     /* border-left: 2px solid grey; */
 }
@@ -288,4 +386,143 @@ input[name="search"] {
 
 .column {
     flex-direction: column;
+}
+
+@media (max-width: 600px) {
+    .main-nav {
+        /* position: fixed;
+        width: 100%;
+        top: 56px;
+        right: 0;
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        align-items: center;
+        transition: max-height .6s;   */
+        display: none;
+    }
+    .main-nav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        /* color: #818181; */
+        display: block;
+        transition: 0.3s;
+    }
+    /* .main-nav a:hover { */
+    /* color: #f1f1f1; */
+    /* } */
+    body.menu-open .main-nav {
+        /* left: 50%; */
+        transform: scaleY(1);
+        max-height: 100vh;
+        display: block;
+        height: 100%;
+        /*100% Full-height*/
+        width: 40%;
+        /* 0 width - change this with JavaScript */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Stay on top */
+        top: 0;
+        /* Stay at the top */
+        right: 0;
+        background-color: #111;
+        /* Black*/
+        overflow-x: hidden;
+        /* Disable horizontal scroll */
+        padding-top: 60px;
+        /* Place content 60px from the top */
+        transition: 0.5s;
+        /* 0.5 second transition effect to slide in the sidenav */
+    }
+    .main-header .main-nav>*:not(:last-child) {
+        margin-inline-end: 0;
+    }
+    .main-header .main-nav a {
+        display: block;
+        padding: 1rem 0;
+        text-align: center;
+        /* border-bottom: 1px solid #ccc; */
+    }
+    .main-header .main-nav a:hover {
+        background-color: #f3f3f3;
+    }
+}
+
+/* Mobile */
+
+@media (min-width: 0px) {
+    .main-layout {
+        min-width: 250px;
+        max-width: 600px;
+    }
+    .meme-edit {
+        flex-direction: column;
+    }
+    .meme-canvas {
+        width: 100%;
+    }
+    .lines-btns {
+        flex-wrap: wrap;
+    }
+    body.menu-open .main-screen {
+        /* display: block; */
+        pointer-events: auto;
+        opacity: 1;
+    }
+    .btn-menu {
+        position: fixed;
+        top: 1px;
+        right: 3px;
+        z-index: 2;
+    }
+    .main-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .7);
+        cursor: pointer;
+        /* display: none; */
+        pointer-events: none;
+        opacity: 0;
+        z-index: 1;
+        transition: opacity .6s;
+    }
+}
+
+/* Desktop */
+
+@media (min-width: 600px) {
+    .main-layout {
+        max-width: 1200px;
+    }
+    .canvas-container {
+        /* flex-basis: 1; */
+        width: 50%;
+    }
+    .control-box {
+        width: 50%;
+    }
+    .meme-edit {
+        flex-direction: row;
+    }
+    .meme-canvas {
+        width: unset;
+    }
+    .btn-menu {
+        display: none;
+    }
+    .main-nav li:first-child a {
+        margin-inline-end: 20px;
+    }
+    .main-nav li:last-child a {
+        margin-inline-start: 20px;
+    }
+    .main-nav li:last-child {
+        border-left: 1px solid #8a8a8a;
+    }
 }

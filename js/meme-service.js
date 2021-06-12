@@ -3,34 +3,38 @@
 var gKeywords = { 'happy': 12, 'funny puk': 1 }
 
 var gImgs = [
-    {id: 0, url: 'img/meme-imgs(square)/1.jpg', keywords: ['happy'] },
-    {id: 1, url: 'img/meme-imgs(square)/2.jpg', keywords: ['happy'] },
-    {id: 2, url: 'img/meme-imgs(square)/3.jpg', keywords: ['happy'] },
-    {id: 3, url: 'img/meme-imgs(square)/4.jpg', keywords: ['happy'] },
-    {id: 4, url: 'img/meme-imgs(square)/5.jpg', keywords: ['happy'] },
-    {id: 5, url: 'img/meme-imgs(square)/6.jpg', keywords: ['happy'] },
-    {id: 6, url: 'img/meme-imgs(square)/7.jpg', keywords: ['happy'] },
-    {id: 7, url: 'img/meme-imgs(square)/8.jpg', keywords: ['happy'] },
-    {id: 8, url: 'img/meme-imgs(square)/9.jpg', keywords: ['happy'] },
-    {id: 9, url: 'img/meme-imgs(square)/10.jpg', keywords: ['happy'] },
-    {id: 10, url: 'img/meme-imgs(square)/11.jpg', keywords: ['happy'] },
-    {id: 11, url: 'img/meme-imgs(square)/12.jpg', keywords: ['happy'] },
-    {id: 12, url: 'img/meme-imgs(square)/13.jpg', keywords: ['happy'] },
-    {id: 13, url: 'img/meme-imgs(square)/14.jpg', keywords: ['happy'] },
-    {id: 14, url: 'img/meme-imgs(square)/15.jpg', keywords: ['happy'] },
-    {id: 15, url: 'img/meme-imgs(square)/16.jpg', keywords: ['happy'] },
-    {id: 16, url: 'img/meme-imgs(square)/17.jpg', keywords: ['happy'] },
-    {id: 17, url: 'img/meme-imgs(square)/18.jpg', keywords: ['happy'] },
-    {id: 18, url: 'img/meme-imgs(square)/19.jpg', keywords: ['happy'] },
+    { id: 0, url: 'img/meme-imgs(square)/1.jpg', keywords: ['happy'] },
+    { id: 1, url: 'img/meme-imgs(square)/2.jpg', keywords: ['happy'] },
+    { id: 2, url: 'img/meme-imgs(square)/3.jpg', keywords: ['happy'] },
+    { id: 3, url: 'img/meme-imgs(square)/4.jpg', keywords: ['happy'] },
+    { id: 4, url: 'img/meme-imgs(square)/5.jpg', keywords: ['happy'] },
+    { id: 5, url: 'img/meme-imgs(square)/6.jpg', keywords: ['happy'] },
+    { id: 6, url: 'img/meme-imgs(square)/7.jpg', keywords: ['happy'] },
+    { id: 7, url: 'img/meme-imgs(square)/8.jpg', keywords: ['happy'] },
+    { id: 8, url: 'img/meme-imgs(square)/9.jpg', keywords: ['happy'] },
+    { id: 9, url: 'img/meme-imgs(square)/10.jpg', keywords: ['happy'] },
+    { id: 10, url: 'img/meme-imgs(square)/11.jpg', keywords: ['happy'] },
+    { id: 11, url: 'img/meme-imgs(square)/12.jpg', keywords: ['happy'] },
+    { id: 12, url: 'img/meme-imgs(square)/13.jpg', keywords: ['happy'] },
+    { id: 13, url: 'img/meme-imgs(square)/14.jpg', keywords: ['happy'] },
+    { id: 14, url: 'img/meme-imgs(square)/15.jpg', keywords: ['happy'] },
+    { id: 15, url: 'img/meme-imgs(square)/16.jpg', keywords: ['happy'] },
+    // {id: 16, url: 'img/meme-imgs(square)/17.jpg', keywords: ['happy'] },
+    { id: 16, url: 'img/meme-imgs/X-Everywhere.jpg', keywords: ['happy'] },
+    { id: 17, url: 'img/meme-imgs/9.jpg', keywords: ['happy'] },
 ];
 
 var gMeme = {
     selectedImgId: 5,
-    selectedLineIdx: 0,
+    // selectedLineIdx: 0,
+    selectedLineIdx: -1,
+    linePosIdx: 0,
     lines: [],
     fontSize: 40,
     font: 'IMPACT',
-    isLineEditOn: false
+    isLineEditOn: false,
+    isFocusedLineOn: false,
+    isLineDeleted: false
 }
 
 
@@ -69,7 +73,7 @@ var gLinesPos = [
     },
 ]
 
-function getSelectedLine() {
+function getSelectedLineIdx() {
     return gMeme.selectedLineIdx;
 }
 
@@ -86,12 +90,12 @@ function setMemeFontSize(changeVal) {
 }
 
 function getMemeFontSize() {
-    console.log(gMeme.fontSize);
     return gMeme.fontSize;
 }
 
 function createLine(text, align = "left", fillColor = "white", strokeColor = "black") {
-    var linePosIdx = gMeme.lines.length;
+    var linePosIdx = gMeme.linePosIdx;
+    // var linePosIdx = gMeme.lines.length;
 
     var newLine = {
         txt: text,
@@ -102,22 +106,51 @@ function createLine(text, align = "left", fillColor = "white", strokeColor = "bl
         pos: gLinesPos[linePosIdx]
     }
     gMeme.lines.push(newLine);
+    gMeme.linePosIdx++;
 }
 
-function setSelectedLine(selectedLine) {
-    gMeme.selectedLineIdx = parseInt(selectedLine) - 1;
-    console.log(gMeme.selectedLineIdx);
+function setSelectedLineIdx() {
+    if (gMeme.selectedLineIdx >= gMeme.lines.length - 1) {
+        gMeme.selectedLineIdx = 0;
+    }
+    else {
+        ++gMeme.selectedLineIdx;
+    }
 }
 
-function getfocusedLine() {
+function setFocusedLine(val) {
+    gMeme.isFocusedLineOn = val;
+}
+function resetSelectedLineIdx() {
+    gMeme.selectedLineIdx = -1;
+}
+
+function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx];
 }
 
-function setLinePos(moveVal) {
-    var focusedLineIdx = gMeme.selectedLineIdx - 1;
+function setLinePosY(moveVal) {
+    var focusedLineIdx = gMeme.selectedLineIdx;
     gMeme.lines[focusedLineIdx].pos.y += moveVal;
 }
 
-function setLineEdit(val) { 
+function setLinePosX(moveVal) {
+    var focusedLineIdx = gMeme.selectedLineIdx;
+    gMeme.lines[focusedLineIdx].pos.x += moveVal;
+}
+
+function setLineEdit(val) {
     gMeme.isLineEditOn = val;
+}
+
+function deleteLastLine() {
+    gMeme.lines.pop();
+}
+
+function deleteSelectedLine() {
+    if (gMeme.selectedLineIdx === -1) return
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    gMeme.isLineDeleted = true;
+    setSelectedLineIdx(-1);
+    setFocusedLine(false);
 }
