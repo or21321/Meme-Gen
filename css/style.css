@@ -5,8 +5,28 @@
 /* FONT */
 
 @font-face {
-    font-family: IMPACT;
+    font-family: Impact;
     src: url(/fonts/impact.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url(/fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Medium;
+    src: url(/fonts/Montserrat/Montserrat-Medium.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url(/fonts/Montserrat/Montserrat-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Thin;
+    src: url(/fonts/Montserrat/Montserrat-Thin.ttf);
 }
 
 /* BASE */
@@ -20,19 +40,20 @@
 body {
     margin: 0;
     height: 100vh;
-    background-color: lightslategray;
+    background-color: #ffffff;
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-/* img {
+img {
     width: 100%;
-} */
+}
 
 .main-nav {
-    gap: 100px;
+    /* gap: 100px; */
+    align-self: flex-end;
 }
 
 /* .main-nav li { */
@@ -42,15 +63,38 @@ h1, h2, h3, h4, h5, h6 {
 /* } */
 
 .main-nav>* a {
-    color: black;
-    font-size: 2rem;
+    color: #ffffff;
+    font-size: 1rem;
+    /* font-size: .59375rem; */
     text-decoration: none;
-    font-family: fantasy;
-    padding: 30px;
+    /* font-family: fantasy; */
+    font-family: Montserrat-Regular;
+    padding-bottom: 15px;
+}
+
+/* .main-nav li:hover a {
+    color: #040a2c;
+} */
+
+.main-nav li:hover a {
+    box-shadow: inset 0 -3px #040a2c;
+    color: #040a2c;
+}
+
+/* .main-nav li:first-child a{
+    padding-inline-end: 5px;
+} */
+
+.main-nav li:first-child a {
+    margin-inline-end: 20px;
+}
+
+.main-nav li:last-child a {
+    margin-inline-start: 20px;
 }
 
 .main-nav li:last-child {
-    margin-right: 2.5rem;
+    border-left: 1px solid #8a8a8a;
 }
 
 .meme-edit {
@@ -74,7 +118,7 @@ h1, h2, h3, h4, h5, h6 {
     /* margin: 0 auto; */
 }
 
-.canvas-edit-tools {
+.control-box {
     border: 2px solid black;
     width: 50%;
     display: flex;
@@ -91,56 +135,97 @@ input[name="textLine"] {
     text-align: center;
 }
 
-.image-gallery img {
-    /* height: 150px; */
-    width: 400px;
-    border-radius: 5px;
-}
-
 .font-size {
     background-color: brown;
     padding: 3px;
     border-radius: 3px;
 }
 
-.logo img {
-    background-color: brown;
-    border-radius: 5px;
-    padding: 3px;
-    width: 5rem;
-    height: 5rem;
-    height: 100%;
+input[name="search"] {
+    text-decoration: underline;
+    border: 0px solid;
+    text-align: center;
 }
 
-/* 
+.search-icon {
+    background: #ffffff;
+    border: none;
+}
+
+.Layer-2 {
+    /* width: 66.5px;
+    height: 11px; */
+    object-fit: contain;
+}
+
+/* .main-header .logo img { */
+
+/* padding: 3px; */
+
+/* width: 5rem; */
+
+/* height: 5rem; */
+
+/* height: 33px; */
+
+/* } */
+
 .logo {
-    margin-left: 1.5rem;
-} */
+    display: flex;
+    justify-content: center;
+}
 
 .header-container {
-    background-color: teal;
-    margin-bottom: 20px;
+    background-color: #ff7f00;
+    /* margin-bottom: 20px; */
+    height: 50px;
 }
 
 .main-header {
+    height: 100%;
     margin: 0 auto;
     align-items: center;
+}
+
+.main-container {
+    background-color: #e3e3e3;
+}
+
+.search-input {
+    margin: 20px 0;
 }
 
 .image-gallery {
     /* margin: 0 50px 0 50px; */
     margin: 0 auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 40px;
-    justify-items: center;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    /* grid-auto-rows: 380px; */
+    gap: 40px;
+    justify-items: stretch;
     padding-top: 20px;
     border-bottom: 2px solid grey;
+    justify-content: stretch;
 }
 
-.main-footer {  
+.image-gallery img {
+    /* width: 100%; */
+    height: 100%;
+    /* overflow: hidden; */
+    /* background-size: cover;
+    background-image: url(your/image.jpg); */
+    /* object-fit: contain; */
+    /* height: 100%; */
+    /* width: 100%; */
+    border-radius: 5px;
+}
+
+.main-footer {
     align-items: center;
     gap: 25px;
     margin-top: 105px;
+    background-color: #ff7f00;
+    height: 103.5px;
 }
 
 .social-nav>* a {
@@ -153,6 +238,10 @@ input[name="textLine"] {
     align-items: center;
     background-color: #0a1366;
     text-decoration: none;
+}
+
+.main-footer small {
+    font-family: Montserrat-Thin;
 }
 
 .social-nav {
@@ -168,9 +257,9 @@ input[name="textLine"] {
 
 .main-layout {
     margin: 0 auto;
-    width: 95%;
-    border-right: 2px solid grey;
-    border-left: 2px solid grey;
+    width: 981px;
+    /* border-right: 2px solid grey; */
+    /* border-left: 2px solid grey; */
 }
 
 /* Helpers */
@@ -197,6 +286,6 @@ input[name="textLine"] {
     padding: 0;
 }
 
-.column {   
+.column {
     flex-direction: column;
 }
